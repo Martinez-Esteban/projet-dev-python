@@ -1,9 +1,13 @@
 import socket
 
-connexion_serveur = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-connexion_serveur.connect(('localhost', 15556))
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(('127.0.0.1', 1111))
 
-response = connexion_serveur.recv(1024)
-print(response.decode())
-
-connexion_serveur.close()
+print("Le nom du fichier que vous voulez récupérer:")
+file_name = input(">> ") # utilisez raw_input() pour les anciennes versions python
+s.send(file_name.encode())
+file_name = 'data/%s' % (file_name,)
+r = s.recv(9999999)
+with open(file_name,'wb') as _file:
+    _file.write(r)
+print("Le fichier a été correctement copié dans : %s." % file_name)
