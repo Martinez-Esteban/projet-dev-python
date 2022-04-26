@@ -13,21 +13,17 @@ class ClientThread(threading.Thread):
     def run(self): 
    
         print("Connexion de %s:%s" % (self.ip, self.port, ))
-
-        r = self.clientsocket.recv(2048)
-        print("Ouverture du fichier: ", r, "...")
-        fp = open(r, 'rb')
-        self.clientsocket.send(fp.read())
-
-        print("Client déconnecté...")
+        print(self.clientsocket.recv(32).decode())
 
 tcpsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 tcpsock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 tcpsock.bind(("",1111))
 
-while True:
-    tcpsock.listen(10)
-    print( "En écoute...")
+for i in range(2):
+    tcpsock.listen()
+    print( "En attente de nouvelle connexion...")
     (clientsocket, (ip, port)) = tcpsock.accept()
     newthread = ClientThread(ip, port, clientsocket)
     newthread.start()
+    
+print("2 clients connectés")
