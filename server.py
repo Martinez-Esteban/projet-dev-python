@@ -13,7 +13,7 @@ class ClientThread(threading.Thread):
     def run(self): 
    
         print("Connexion de %s:%s" % (self.ip, self.port, ))
-        print(self.clientsocket.recv(32).decode())
+        self.clientsocket.recv(32).decode()
 
 tcpsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 tcpsock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -27,3 +27,11 @@ for i in range(2):
     newthread.start()
     
 print("2 clients connectés")
+
+while True:
+    if(clientsocket.recv(32).decode() == "END"):
+        break
+    move = clientsocket.recv(32).decode()
+    print(move)
+    
+print("server stoped")

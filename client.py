@@ -30,7 +30,7 @@ def check_win():
     
 # main game loop
 while count < 9:
-    if(turn == True):
+    if(turn):
         player = "X"
     else:
         player = "O"
@@ -39,8 +39,6 @@ while count < 9:
     l = int(input())-1
     print("Colonne (entre 1 et 3) :")
     c = int(input())-1
-    move = str(l) + str(c)
-    s.send(move.encode())
     clear()
     if(l <= 3 and c <= 3 and grid[l][c] == " - "):
         grid[l][c] = " " + player + " "
