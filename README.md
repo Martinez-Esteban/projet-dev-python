@@ -17,4 +17,4 @@ Il s'agit d'un tic tac toe en python en réseau en CLI.
 ## Technologies utilisées
 
 - Python 3
-- Mysql
+- sqlite3
