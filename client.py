@@ -2,8 +2,13 @@ import socket, os
 
 clear = lambda: os.system('clear')
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.connect(('127.0.0.1', 1111))
+try:
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect(('127.0.0.1', 1111))
+except:
+    clear()
+    print("/!\ Server not found ! \n")
+    exit()
 
 # init game
 clear()
