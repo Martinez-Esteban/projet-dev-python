@@ -1,6 +1,14 @@
-import socket, os
+import socket
+from os import system, name
 
-clear = lambda: os.system('clear')
+def clear():
+   # for windows
+   if name == 'nt':
+      _ = system('cls')
+
+   # for mac and linux
+   else:
+    _ = system('clear')
 
 try:
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -47,6 +55,8 @@ while count < 9:
     clear()
     if(l <= 3 and c <= 3 and grid[l][c] == " - "):
         grid[l][c] = " " + player + " "
+        move = str(l) + str(c)
+        s.send(move.encode())
         for line in grid:
             print(''.join(line))
         turn = not turn

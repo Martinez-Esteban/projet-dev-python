@@ -1,7 +1,14 @@
-import os
+from os import system, name
 from random import randint
 
-clear = lambda: os.system('clear')
+def clear():
+   # for windows
+   if name == 'nt':
+      _ = system('cls')
+
+   # for mac and linux
+   else:
+    _ = system('clear')
 
 # init game
 clear()

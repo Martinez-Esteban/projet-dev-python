@@ -1,8 +1,16 @@
 from atexit import register
-import os, bcrypt
+import bcrypt
+from os import system, name
 from database import *
 
-clear = lambda: os.system('clear')
+def clear():
+   # for windows
+   if name == 'nt':
+      _ = system('cls')
+
+   # for mac and linux
+   else:
+    _ = system('clear')
 
 connect()
 
@@ -28,7 +36,7 @@ def login():
         print("Password :")
         password = input().encode('utf-8')
         if check_user(username, password):
-            os.system('python3 client.py')
+            system('python3 client.py')
         else:
             clear()
             print("Wrong username or password \n")
@@ -53,7 +61,7 @@ while True:
     print("2. Multiplayer")
     choice = input()
     if choice == "1":
-        os.system("python3 solo.py")
+        system("python3 solo.py")
     elif choice == "2":
         multiplayer()
     else:

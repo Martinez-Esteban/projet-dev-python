@@ -1,5 +1,5 @@
 import socket, threading
-from database import connect
+# from database import connect
 
 class ClientThread(threading.Thread):
 
@@ -33,6 +33,6 @@ while True:
     if(clientsocket.recv(32).decode() == "END"):
         break
     move = clientsocket.recv(32).decode()
-    # print(move)
+    print(move)
     
 print("server stoped")
