@@ -1,5 +1,9 @@
+import sys
 from os import system, name
 from random import randint
+from database import add_win, add_loose, get_scores, tie
+
+username = sys.argv[1]
 
 
 def clear():
@@ -25,9 +29,6 @@ for line in grid:
 
 
 def check_win():
-    for line in grid:
-        if(line[0] == line[1] == line[2] and line[0] != " - "):
-            return True
     for line in grid:
         if(line[0] == line[1] == line[2] and line[0] != " - "):
             return True
@@ -60,7 +61,11 @@ while count < 9:
             turn = not turn
             count += 1
             if(check_win()):
-                print("\nVictoire de : ", player + "\n")
+                print("\nVictoire de : ", username + "\n")
+                if player == "X":
+                    add_win(username)
+                else:
+                    add_loose(username)
                 break
         else:
             for line in grid:
@@ -79,7 +84,24 @@ while count < 9:
             count += 1
             if(check_win()):
                 print("\nVictoire de : ", player + "\n")
+                if player == "X":
+                    add_win(username)
+                else:
+                    add_loose(username)
                 break
 
 if(not check_win()):
     print("\nMatch nul")
+    tie(username)
+
+print("HIGH SCORES :\n")
+scores = get_scores()
+print("{:<10} | {:<6} | {:<6} | {:<6}".format(
+    "Username", "Wins", "Looses", "Games"))
+print("------------------------------------")
+for score in scores:
+    print("{:<10} | {:<6} | {:<6} | {:<6}".format(
+        score[1], score[2], score[3], score[4]))
+    print("------------------------------------")
+input("\nPress enter to continue...")
+clear()

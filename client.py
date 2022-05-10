@@ -1,5 +1,6 @@
 import socket
 from os import system, name
+from solo import check_win
 
 
 def clear():
@@ -28,22 +29,6 @@ player = "X"
 count = 0
 for line in grid:
     print(''.join(line))
-
-# function to check if someone won
-
-
-def check_win():
-    for line in grid:
-        if(line[0] == line[1] == line[2] and line[0] != " - "):
-            return True
-    for line in grid:
-        if(line[0] == line[1] == line[2] and line[0] != " - "):
-            return True
-    if(grid[0][0] == grid[1][1] == grid[2][2] and grid[0][0] != " - "):
-        return True
-    if(grid[0][2] == grid[1][1] == grid[2][0] and grid[0][2] != " - "):
-        return True
-    return False
 
 
 # main game loop

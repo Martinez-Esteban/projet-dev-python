@@ -1,3 +1,4 @@
+from glob import glob
 import os
 import bcrypt
 from database import *
@@ -8,8 +9,11 @@ def clear(): return os.system('clear')
 
 connect()
 
+username = ""
+
 
 def login():
+    global username
     print("--- LOGIN ---")
     print("Username :")
     username = input()
@@ -42,6 +46,7 @@ def register():
 
 
 def menu():
+    global username
     clear()
     while True:
         print("--- MENU ---")
@@ -49,7 +54,7 @@ def menu():
         print("2. Multiplayer")
         choice = input()
         if choice == "1":
-            os.system("python3 solo.py")
+            os.system("python3 solo.py " + username)
         elif choice == "2":
             os.system("python3 client.py")
         else:
@@ -59,7 +64,7 @@ def menu():
 
 clear()
 while True:
-    print("--- MULTIPLAYER ---")
+    print("--- Please Identify ---")
     print("1. Login")
     print("2. Register")
     choice = input()
