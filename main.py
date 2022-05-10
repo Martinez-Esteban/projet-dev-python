@@ -9,22 +9,6 @@ def clear(): return os.system('clear')
 connect()
 
 
-def multiplayer():
-    clear()
-    print("--- MULTIPLAYER ---")
-    print("1. Login")
-    print("2. Register")
-    choice = input()
-    if choice == "1":
-        clear()
-        login()
-    elif choice == "2":
-        register()
-    else:
-        clear()
-        print("wrong input")
-
-
 def login():
     print("--- LOGIN ---")
     print("Username :")
@@ -32,7 +16,7 @@ def login():
     print("Password :")
     password = input().encode('utf-8')
     if check_user(username, password):
-        os.system('python3 client.py')
+        menu()
     else:
         clear()
         print("Wrong username or password \n")
@@ -51,17 +35,38 @@ def register():
         add_user(username, hash)
         clear()
         login()
-
-
-while True:
-    print("--- MENU ---")
-    print("1. Solo VS AI")
-    print("2. Multiplayer")
-    choice = input()
-    if choice == "1":
-        os.system("python3 solo.py")
-    elif choice == "2":
-        multiplayer()
     else:
         clear()
-        print("Wrong input")
+        print("User already exist, please login :\n")
+        login()
+
+
+def menu():
+    clear()
+    while True:
+        print("--- MENU ---")
+        print("1. Solo VS AI")
+        print("2. Multiplayer")
+        choice = input()
+        if choice == "1":
+            os.system("python3 solo.py")
+        elif choice == "2":
+            os.system("python3 client.py")
+        else:
+            clear()
+            print("Wrong input")
+
+
+clear()
+while True:
+    print("--- MULTIPLAYER ---")
+    print("1. Login")
+    print("2. Register")
+    choice = input()
+    if choice == "1":
+        login()
+    elif choice == "2":
+        register()
+    else:
+        clear()
+        print("wrong input\n")
