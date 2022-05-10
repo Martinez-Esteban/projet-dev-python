@@ -1,4 +1,6 @@
-import sqlite3, bcrypt
+import sqlite3
+import bcrypt
+
 
 def connect():
     conn = sqlite3.connect('database.db')
@@ -18,14 +20,17 @@ def connect():
 
     conn.commit()
     conn.close()
-    
+
+
 def add_user(username, password):
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO users VALUES (NULL, ?, ?)", (username, password))
+    cursor.execute("INSERT INTO users VALUES (NULL, ?, ?)",
+                   (username, password))
     conn.commit()
     conn.close()
-    
+
+
 def check_user(username, password):
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
@@ -39,7 +44,8 @@ def check_user(username, password):
             return True
         else:
             return False
-        
+
+
 def user_not_exist(username):
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()

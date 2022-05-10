@@ -1,25 +1,29 @@
 from os import system, name
 from random import randint
 
-def clear():
-   # for windows
-   if name == 'nt':
-      _ = system('cls')
 
-   # for mac and linux
-   else:
-    _ = system('clear')
+def clear():
+    # for windows
+    if name == 'nt':
+        _ = system('cls')
+
+    # for mac and linux
+    else:
+        _ = system('clear')
+
 
 # init game
 clear()
-grid = [[" - "," - "," - "],[" - "," - "," - "],[" - "," - "," - "]]
+grid = [[" - ", " - ", " - "], [" - ", " - ", " - "], [" - ", " - ", " - "]]
 turn = True
 player = "X"
 count = 0
 for line in grid:
     print(''.join(line))
-     
-# function to check if someone won   
+
+# function to check if someone won
+
+
 def check_win():
     for line in grid:
         if(line[0] == line[1] == line[2] and line[0] != " - "):
@@ -32,12 +36,13 @@ def check_win():
     if(grid[0][2] == grid[1][1] == grid[2][0] and grid[0][2] != " - "):
         return True
     return False
-    
-if randint(0,1) == 0:
+
+
+if randint(0, 1) == 0:
     turn = False
 else:
     turn = True
-    
+
 # main game loop
 while count < 9:
     print("\nVous : X")
@@ -63,8 +68,8 @@ while count < 9:
             print("wrong input")
     else:
         player = "O"
-        l = randint(0,2)
-        c = randint(0,2)
+        l = randint(0, 2)
+        c = randint(0, 2)
         clear()
         if grid[l][c] == " - ":
             grid[l][c] = " " + player + " "
@@ -75,6 +80,6 @@ while count < 9:
             if(check_win()):
                 print("\nVictoire de : ", player + "\n")
                 break
-        
+
 if(not check_win()):
     print("\nMatch nul")

@@ -1,14 +1,16 @@
 import socket
 from os import system, name
 
-def clear():
-   # for windows
-   if name == 'nt':
-      _ = system('cls')
 
-   # for mac and linux
-   else:
-    _ = system('clear')
+def clear():
+    # for windows
+    if name == 'nt':
+        _ = system('cls')
+
+    # for mac and linux
+    else:
+        _ = system('clear')
+
 
 try:
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -20,14 +22,16 @@ except:
 
 # init game
 clear()
-grid = [[" - "," - "," - "],[" - "," - "," - "],[" - "," - "," - "]]
+grid = [[" - ", " - ", " - "], [" - ", " - ", " - "], [" - ", " - ", " - "]]
 turn = True
 player = "X"
 count = 0
 for line in grid:
     print(''.join(line))
-     
-# function to check if someone won   
+
+# function to check if someone won
+
+
 def check_win():
     for line in grid:
         if(line[0] == line[1] == line[2] and line[0] != " - "):
@@ -40,7 +44,8 @@ def check_win():
     if(grid[0][2] == grid[1][1] == grid[2][0] and grid[0][2] != " - "):
         return True
     return False
-    
+
+
 # main game loop
 while count < 9:
     if(turn):
@@ -68,13 +73,12 @@ while count < 9:
         for line in grid:
             print(''.join(line))
         print("wrong input")
-        
+
 if(not check_win()):
     print("\nMatch nul")
-        
+
 s.send("END".encode())
-        
-        
-        
+
+
 # s.send(username.encode())
 # r = s.recv(2048)
